@@ -5,8 +5,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Footer1 from '../components/Footer1'
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import Navbar1 from '../components/Navbar/Navbar1';
+
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -45,7 +45,7 @@ export default function Home() {
   
   return (
     <div >
-       
+       <Navbar1/>
       <div className='mt-20'>
         <img src={img}
           class="h-1/5 w-full"
