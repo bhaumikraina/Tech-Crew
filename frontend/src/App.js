@@ -9,17 +9,24 @@ import Login from "./pages/Login"
 import Signup from "./pages/Signup";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
+import { useAuthContext } from "./hooks/useAuthContext";
+
 function App() {
+
+  const { user } = useAuthContext();
   return (
     <BrowserRouter>
-    <Routes>
-      
-    </Routes>
    
     <Routes>
      
-    <Route path="/Login" element={<Login/>}/>
-    <Route path="/Signup" element={<Signup/>}/>
+    <Route
+						path="/login"
+						element={!user ? <Login /> : <Navigate to="/" />}
+					/>
+					<Route
+						path="/signup"
+						element={!user ? <Signup /> : <Navigate to="/" />}
+					/>
       <Route path="/" element={<Home/>}/>
       <Route path="/Menu" element={<Menu/>}/>
       {/* <Route path="/CART" element={<CART/>}  	/> */}

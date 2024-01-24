@@ -7,10 +7,10 @@ import { useDispatchCart,useCart } from '../context/FavContext';
 import { Badge } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import Cart from './Cart';
-
+import { useAuthContext } from '../hooks/useAuthContext'
 
 import Footer1 from '../components/Footer1'
-import Navbar1 from '../components/Navbar/Navbar1';
+import Navbar1 from '../components/Navbar1';
 export default function Menu() {
   const [foodItem, setFoodItem] = useState([]);
   const [foodCat, setFoodCat] = useState([]);

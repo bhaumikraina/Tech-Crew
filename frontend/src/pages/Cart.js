@@ -2,7 +2,7 @@ import React from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useCart, useDispatchCart } from '../context/FavContext';
 import Footer1 from '../components/Footer1';
-import Navbar1 from '../components/Navbar/Navbar1';
+import Navbar1 from '../components/Navbar1';
 
 export default function Cart() {
   const data = useCart();

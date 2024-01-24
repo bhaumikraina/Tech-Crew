@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {Link} from "react-router-dom"
-import Navbarlogo from './Navbar/Navbarlogo'
+import Navbarlogo from './Navbarlogo'
 export default function FOOTER1() {
   return (
     <div>

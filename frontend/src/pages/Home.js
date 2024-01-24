@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Footer1 from '../components/Footer1'
-import Navbar1 from '../components/Navbar/Navbar1';
+import Navbar1 from '../components/Navbar1';
 
 
 function SampleNextArrow(props) {
@@ -39,13 +39,23 @@ export default function Home() {
     slidesToShow: 5,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
-  };
+    prevArrow: <SamplePrevArrow />,
+    resposive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  
+  }
+
 
   
   return (
     <div >
-       <Navbar1/>
+       <Navbar1 style={{ background: "#333", color: "#fff", padding: "10px" }}/>
       <div className='mt-20'>
         <img src={img}
           class="h-1/5 w-full"
@@ -63,13 +73,13 @@ export default function Home() {
 <div className='mt-20'>
 <Slider {...settings} className=" -mb-16 m-8 ">  
 {data.map((d)=>(
-  <div className='bg-white h-{450} text-black rounded-xl'>
+  <div className='bg-white h-96 text-black rounded-xl p-4 shadow-md'>
     <div className='h-56 rounded-t-xl bg-blue-100 flex justify-center items-center'>
-    <img src={d.image} alt="" className='h-44 w-44 rounded-full'/>
+    <img src={d.image} alt="" className='h-44 w-44 rounded-full mx-auto mt-4 object-cover'/>
     </div>
     <div className='flex flex-col justify-center items-center gap-4 p-4'> 
-    <p className='test-xl font-semibold'>{d.name}</p>
-    <p className='italic'>{d.review}</p>
+    <p className='text-xl font-semibold text-center mt-2'>{d.name}</p>
+    <p className='italic text-sm text-center'>{d.review}</p>
    
     </div>
     </div>
