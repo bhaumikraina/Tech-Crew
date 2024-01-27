@@ -1,42 +1,72 @@
+import React, { useEffect } from 'react';
+import axios from 'axios';
 
-import React, { Component } from 'react'
-import axios from "axios";
-import { Link } from 'react-router-dom'
-import { Button, Container, Table } from 'reactstrap';
+import ReviewForm from '../components/form';
+import { useReviewContext } from '../context/reviewContext';
+import { useAuthContext } from '../hooks/useAuthContext'
+import Footer1 from '../components/Footer1'
+import Navbar1 from '../components/Navbar1';
 
 
-export default function Review() {
-  
+const Review = () => {
+  const { state: reviewState, dispatch: reviewDispatch } = useReviewContext();
+  const { user } = useAuthContext();
+
+  useEffect(() => {
+    axios.get('/user/review')
+      .then(response => reviewDispatch({ type: 'SET_REVIEWS', payload: response.data }))
+      .catch(error => console.error('Error fetching reviews:', error));
+  }, [reviewDispatch]);
+
+  const handleAddReview = (newReview) => {
+    reviewDispatch({ type: 'ADD_REVIEW', payload: newReview });
+  };
+
+  const handleDeleteReview = async (reviewId) => {
+    try {
+      // Assuming you have an authentication token in authState.token
+      await axios.delete(`/user/review/${reviewId}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      // Remove the deleted review from the state
+      reviewDispatch({ type: 'DELETE_REVIEW', payload: reviewId });
+    } catch (error) {
+      console.error('Error deleting review:', error);
+      // Provide feedback to the user about the error
+    }
+  };
+
   return (
-    <div>
- 
+    <div className='mt-32 '>
+      <Navbar1 style={{ background: "#333", color: "#fff", padding: "10px" }} />
+      <div className="container mx-auto my-8">
+        <ReviewForm onAddReview={handleAddReview} />
 
- 
-      {/* frontend+backend */}
-       {/* <Container className="m-3">
-                <h4 className="float-right">Reviews </h4>
-                <Button outline color="primary" className="mr-3">
-                    <Link to={`/restaurants/${this.props.match.params._id}/review`}>New Review</Link>
-                </Button>
-                <Table dark className="mt-3">
-                    <thead>
-                        <th>Customer Name:</th>
-                        <th>Stars:</th>
-                        <th>Description:</th>
-                    </thead>
-                    <tbody>
-                    {this.state.restaurant.reviews.map( review =>  {
-                    return (
-                        <tr key={review._id} className="review">
-                            <td>{review.customerName}</td>
-                            <td>{review.rating}</td>
-                            <td>{review.reviewDescription}</td>
-                        </tr>
-                        )
-                    })}
-                    </tbody>
-                </Table>  
-            </Container> */}
+        {reviewState.loading ? (
+          <p>Loading reviews...</p>
+        ) : (
+          <div>
+            {reviewState.reviews.map(review => (
+              <div key={review._id} className="bg-gray-100 p-4 mb-4">
+                <p>{review.text}</p>
+                <p className="text-gray-600">User: {review.user}</p>
+                <p className="text-blue-500">Rating: {review.rating}</p>
+                
+                {/* Display delete button only if the current user is the author */}
+                {user && user._id === review.user._id && (
+                  <button onClick={() => handleDeleteReview(review._id)} className="text-red-500">Delete Review</button>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <Footer1 />
     </div>
-  )
-}
+  );
+};
+
+export default Review;

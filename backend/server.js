@@ -4,6 +4,8 @@ const cors = require('cors');
 const mongoDB = require('./db');
 require('dotenv').config();
 const dataRoutes = require('./routes/Data');
+const reviewRoutes=require('./routes/reviewRoutes')
+
 
 const userRoutes = require('./routes/user')
 
@@ -24,6 +26,8 @@ app.use((req, res, next) => {
 app.use('/data', dataRoutes);
 
 app.use('/api/user', userRoutes)
+
+app.use('/user',reviewRoutes)
 
 app.listen(process.env.PORT, () => {
   console.log('Listening on port ', process.env.PORT);

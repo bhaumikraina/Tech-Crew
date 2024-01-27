@@ -36,7 +36,7 @@ export default function Cart() {
 
   return (
     <div>
-      <Navbar1/>
+      <Navbar1 style={{ background: "#333", color: "#fff", padding: "10px" }}/>
     <div className="mt-32 bg-gray-100 min-h-screen flex flex-col items-center justify-center">
       <div className="w-full max-w-screen-md bg-white shadow-md rounded-md p-8">
         <h1 className="text-3xl font-bold text-blue-500 mb-6">CART</h1>

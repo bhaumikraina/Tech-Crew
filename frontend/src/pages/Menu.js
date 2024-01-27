@@ -18,6 +18,8 @@ export default function Menu() {
   const [loading, setLoading] = useState(true);
   const [response, setResponse] = useState([]); // Define response as state variable
   const [cart,setCart]=useState(false)
+  const { user } = useAuthContext();
+
 
   let dispatch=useDispatchCart()
   let data=useCart()
@@ -26,10 +28,15 @@ export default function Menu() {
 
   const loadData = async () => {
     try {
+      if (!user) {
+        window.location.href = "/login";
+        return;
+      }
       let response = await fetch("/data/foodData", {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
         }
       });
       response = await response.json();
@@ -53,6 +60,10 @@ export default function Menu() {
   };
 
   const handleAddtoCart = async (selectedItem) => {
+    if (!user) {
+			window.location.href = "/login";
+			return;
+		}
     if (selectedItem) {
       await dispatch({
         type: "ADD",
@@ -87,7 +98,7 @@ export default function Menu() {
   return (
     
     <div className='mt-32 '>
-      <Navbar1/>
+      <Navbar1 style={{ background: "#333", color: "#fff", padding: "10px" }}/>
       <div>
         <h1 className='text-purple-600 font-bold text-4xl text-center'>
           Menu
