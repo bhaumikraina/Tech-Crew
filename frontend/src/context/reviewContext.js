@@ -13,16 +13,15 @@ const reviewReducer = (state, action) => {
     case 'ADD_REVIEW':
       return { ...state, reviews: [...state.reviews, action.payload] };
     case 'UPDATE_REVIEW':
-      // Find the index of the review to be updated
+      
       const updateIndex = state.reviews.findIndex(review => review._id === action.payload._id);
 
-      // Create a new array with the updated review
       const updatedReviews = [...state.reviews];
       updatedReviews[updateIndex] = action.payload;
 
       return { ...state, reviews: updatedReviews };
     case 'DELETE_REVIEW':
-     // Filter out the deleted review
+
      const filteredReviews = state.reviews.filter(review => review._id !== action.payload);
      return { ...state, reviews: filteredReviews }; 
     default:

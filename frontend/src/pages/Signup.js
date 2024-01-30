@@ -18,7 +18,7 @@ export default function Signup() {
 
   return (
 <div className="flex flex-col md:flex-row h-screen m-4 md:m-20">
-      {/* Left side with clear background image */}
+    
       <div
         className="w-full md:w-1/2 bg-cover bg-center flex items-center justify-center rounded-md relative"
         style={{
@@ -30,13 +30,12 @@ export default function Signup() {
             Already a member?
           </p>
           <p className="text-md md:text-lg">
-            <Link to="/Login" className="underline">Login</Link>
+            <Link to="/login" className="underline">Login</Link>
           </p>
         </div>
-        {/* You can add more content or components here */}
+     
       </div>
 
-      {/* Right side with the enhanced login form */}
       <form
         className="w-full md:w-1/2 border border-gray-300 p-4 md:p-10 rounded-md shadow-md flex flex-col items-center justify-center mx-auto mt-4 md:mt-0"
         onSubmit={handleSubmit}

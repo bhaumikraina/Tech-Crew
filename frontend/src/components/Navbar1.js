@@ -36,7 +36,7 @@ export default function Navbar1() {
           )}
           {!user && (
             <div className="flex space-x-3">
-              <Link to="/Login">
+              <Link to="/login">
                 <button
                   type="button"
                   className="text-white bg-purple-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -44,7 +44,7 @@ export default function Navbar1() {
                   Login
                 </button>
               </Link>
-              <Link to="/Signup">
+              <Link to="/signup">
                 <button
                   type="button"
                   className="text-white bg-purple-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

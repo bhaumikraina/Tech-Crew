@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 
 import Menu from "./pages/Menu";
-import About from "./pages/About/About";
+import About from "./pages/About";
 import Reviews from "./pages/Reviews";
 
 import Login from "./pages/Login"
@@ -29,7 +29,7 @@ function App() {
 					/>
       <Route path="/" element={<Home/>}/>
       <Route path="/Menu" element={<Menu/>}/>
-      {/* <Route path="/CART" element={<CART/>}  	/> */}
+   
 							
       <Route path="/Contact" element={<Contact/>}/>
       <Route path="/About" element={<About/>}/>

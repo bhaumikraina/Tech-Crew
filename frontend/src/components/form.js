@@ -29,8 +29,8 @@ const ReviewForm = ({ onAddReview }) => {
           <tbody>
             <tr>
               <td className='py-2'>
-                <label htmlFor="reviewText" className="block mb-2">
-                  Review Text:
+                <label htmlFor="reviewText" className="block mb-2 font-bold">
+                  Enter Text:
                 </label>
               </td>
               <td className='py-2'>
@@ -45,8 +45,8 @@ const ReviewForm = ({ onAddReview }) => {
             </tr>
             <tr>
               <td className='py-2'>
-                <label htmlFor="userName" className="block mb-2">
-                  User:
+                <label htmlFor="userName" className="block mb-2 font-bold">
+                  Enter Username:
                 </label>
               </td>
               <td className='py-2'>
@@ -61,7 +61,7 @@ const ReviewForm = ({ onAddReview }) => {
             </tr>
             <tr>
               <td className='py-2'>
-                <label htmlFor="sentiment" className="block mb-2">
+                <label htmlFor="sentiment" className="block mb-2 font-bold">
                   Sentiment:
                 </label>
               </td>
@@ -79,7 +79,7 @@ const ReviewForm = ({ onAddReview }) => {
             </tr>
             <tr>
               <td className='py-2'>
-                <label htmlFor="rating" className="block mb-2">
+                <label htmlFor="rating" className="block mb-2 font-bold">
                   Rating:
                 </label>
               </td>
@@ -97,7 +97,7 @@ const ReviewForm = ({ onAddReview }) => {
           </tbody>
         </table>
         <br />
-        <button className="bg-green-500 text-white p-2" type="submit">
+        <button className="bg-blue-500 text-white p-2" type="submit">
           Add Review
         </button>
       </form>

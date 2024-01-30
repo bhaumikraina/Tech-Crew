@@ -7,7 +7,6 @@ import { useAuthContext } from '../hooks/useAuthContext'
 import Footer1 from '../components/Footer1'
 import Navbar1 from '../components/Navbar1';
 
-
 const Review = () => {
   const { state: reviewState, dispatch: reviewDispatch } = useReviewContext();
   const { user } = useAuthContext();
@@ -24,40 +23,50 @@ const Review = () => {
 
   const handleDeleteReview = async (reviewId) => {
     try {
-      // Assuming you have an authentication token in authState.token
+      if (!user) {
+        console.error('User not logged in');
+        return;
+      }
+  
+      console.log('User ID:', user._id); 
+  
       await axios.delete(`/user/review/${reviewId}`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
       });
-
-      // Remove the deleted review from the state
+  
       reviewDispatch({ type: 'DELETE_REVIEW', payload: reviewId });
     } catch (error) {
       console.error('Error deleting review:', error);
-      // Provide feedback to the user about the error
     }
   };
-
   return (
-    <div className='mt-32 '>
-      <Navbar1 style={{ background: "#333", color: "#fff", padding: "10px" }} />
+    <div className="mt-32">
+      <Navbar1 style={{ background: '#333', color: '#fff', padding: '10px' }} />
       <div className="container mx-auto my-8">
+        <h1 className="text-4xl font-bold mb-8 text-center">Reviews</h1>
         <ReviewForm onAddReview={handleAddReview} />
 
         {reviewState.loading ? (
-          <p>Loading reviews...</p>
+          <p className="text-center">Loading reviews...</p>
         ) : (
           <div>
             {reviewState.reviews.map(review => (
-              <div key={review._id} className="bg-gray-100 p-4 mb-4">
-                <p>{review.text}</p>
-                <p className="text-gray-600">User: {review.user}</p>
-                <p className="text-blue-500">Rating: {review.rating}</p>
-                
-                {/* Display delete button only if the current user is the author */}
-                {user && user._id === review.user._id && (
-                  <button onClick={() => handleDeleteReview(review._id)} className="text-red-500">Delete Review</button>
+              <div key={review._id} className="bg-gray-100 p-6 mb-8 rounded-md shadow-md">
+                <p className="text-xl font-bold mb-4">{review.text}</p>
+                <p className="text-gray-600 text-lg">User: {review.user}</p>
+                <p className="text-gray-600 text-lg">Sentiment: {review.sentiment}</p>
+
+                <p className="text-blue-500 text-lg">Rating: {review.rating}</p>
+
+                {user && (
+                  <button
+                    onClick={() => handleDeleteReview(review._id)}
+                    className="text-red-800 mt-4 px-4 py-2 border border-red-800 rounded-md transition duration-300 hover:bg-red-800 hover:text-white"
+                  >
+                    Delete Review
+                  </button>
                 )}
               </div>
             ))}

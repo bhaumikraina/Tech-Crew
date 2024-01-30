@@ -42,6 +42,12 @@ export default function Home() {
     prevArrow: <SamplePrevArrow />,
     resposive: [
       {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
@@ -54,24 +60,20 @@ export default function Home() {
 
   
   return (
-    <div >
-       <Navbar1 style={{ background: "#333", color: "#fff", padding: "10px" }}/>
-      <div className='mt-20'>
-        <img src={img}
-          class="h-1/5 w-full"
-          alt="Hello" />
+    <div>
+    <Navbar1 className="bg-gray-800 text-white p-4 text-xl" />
+    <div className='mt-20'>
+      <img src={img} className="w-full" alt="Hello" />
     </div>
- 
 
+    <div className='max-w-screen-xl mx-auto px-4 py-12'>
+      <h1 className='text-orange-600 font-bold text-4xl text-center'>
+        Top Rated Menu Items
+      </h1>
 
-  <div className='max-w-[1640px] m-auto px-4 py-12'>
-    <h1 className='text-orange-600 font-bold text-4xl text-center'>
-      Top Rated Menu Items
-    </h1>
-
-<div className="w-3/4 m-auto">
-<div className='mt-20'>
-<Slider {...settings} className=" -mb-16 m-8 ">  
+      <div className="w-full mx-auto">
+        <div className='mt-20'>
+          <Slider {...settings} className="m-8"> 
 {data.map((d)=>(
   <div className='bg-white h-96 text-black rounded-xl p-4 shadow-md'>
     <div className='h-56 rounded-t-xl bg-blue-100 flex justify-center items-center'>

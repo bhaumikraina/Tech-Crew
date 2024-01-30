@@ -97,18 +97,17 @@ export default function Menu() {
 
   return (
     
-    <div className='mt-32 '>
-      <Navbar1 style={{ background: "#333", color: "#fff", padding: "10px" }}/>
-      <div>
-        <h1 className='text-purple-600 font-bold text-4xl text-center'>
-          Menu
-        </h1></div>
-      < div>
-        <div className='flex flex-col lg:flex-row justify-between'>
-
-          <div>
-
-            <div className='flex justfiy-between '>
+    <div className='mt-32'>
+    <Navbar1 className="bg-gray-800 text-white p-4 text-xl" />
+    <div>
+      <h1 className='text-purple-600 font-bold text-4xl text-center'>
+        Menu
+      </h1>
+    </div>
+    <div>
+      <div className='flex flex-col lg:flex-row justify-between'>
+        <div>
+          <div className='flex justfiy-between flex-wrap lg:flex-nowrap'>
               <button
                 onClick={() => resetFilters()}
                 className='relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800'
@@ -193,7 +192,7 @@ export default function Menu() {
         {loading ? (
   <p>Loading...</p>
 ) : (
-  <div className='grid grid-cols-2 lg:grid-cols-4 gap-6 pt-4'>
+  <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4'>
     {foodItem.map((item) => (
       <div
         key={item.id}
