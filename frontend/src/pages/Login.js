@@ -72,7 +72,46 @@ export default function Login() {
       </form>
       {error && (
     <div className="text-red-500 text-sm mt-2">
-      {error.message }
+      {error.message 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      }
     </div>
   )}
     </div>

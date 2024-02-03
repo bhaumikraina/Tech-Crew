@@ -10,6 +10,8 @@ import Signup from "./pages/Signup";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
 import { useAuthContext } from "./hooks/useAuthContext";
+import Pay from "./pages/Pay";
+
 
 function App() {
 
@@ -35,6 +37,7 @@ function App() {
       <Route path="/About" element={<About/>}/>
       <Route path="/Reviews" element={<Reviews/>}/>
       <Route path="/Cart" element={<Cart/>}/>
+      <Route path="/payment" element={<Pay/>}/>
       
     </Routes>
    

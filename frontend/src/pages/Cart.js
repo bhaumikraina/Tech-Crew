@@ -3,6 +3,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useCart, useDispatchCart } from '../context/FavContext';
 import Footer1 from '../components/Footer1';
 import Navbar1 from '../components/Navbar1';
+import { Link, Navigate } from 'react-router-dom';
 
 export default function Cart() {
   const data = useCart();
@@ -22,6 +23,8 @@ export default function Cart() {
         })
       });
 
+ 
+
       console.log("JSON RESPONSE:::::", response.status);
       console.log('Food Data:', data);
       if (response.status === 200) {
@@ -31,8 +34,41 @@ export default function Cart() {
       console.error('Error during checkout:', error);
     }
   };
+  const updateQuantity = (index, newQuantity) => {
+    dispatch({ type: "UPDATE", index, newQuantity });
+  };
+  const cartItems = data ? data.map((food, index) => (
+    <tr key={index} className="border-t hover:bg-gray-50 transition-all">
+       <td className="py-2">{index + 1}</td>
+                    <td className="py-2">
+                      <img src={food.img} alt={food.name} className="w-12 h-12 object-cover" />
+                      {console.log('Image URL:', food.image)}
+                    </td>
+                    <td className="py-2">{food.name}</td>
+                    <td className="py-2">
+                      <input
+                        type="number"
+                        value={food.qty}
+                        onChange={(e) => updateQuantity(index, parseInt(e.target.value))}
+                        className="w-12 text-center"
+                      />
+                    </td>
+                    <td className="py-2">{food.size}</td>
+                    <td className="py-2">{food.price}</td>
+                    <td className="py-2">
+                      <button
+                        type="button"
+                        className="text-red-500 hover:text-red-700 transition-all focus:outline-none"
+                        onClick={() => dispatch({ type: "REMOVE", index })}
 
-  const totalPrice = data.reduce((total, food) => total + food.price * food.qty, 0);
+                    >
+                      <DeleteIcon />
+                    </button>
+                  </td>
+    </tr>
+  )) : [];
+
+  const totalPrice = data ? data.reduce((total, food) => total + food.price * food.qty, 0) : 0;
 
   return (
     <div>
@@ -47,46 +83,28 @@ export default function Cart() {
                 <th className="py-2">#</th>
                 <th className="py-2">Image</th>
                 <th className="py-2">Name</th>
+               
                 <th className="py-2">Quantity</th>
-                <th className="py-2">Option</th>
                 <th className="py-2">Amount</th>
                 <th className="py-2"></th>
               </tr>
             </thead>
             <tbody>
-              {data.map((food, index) => (
-                <tr key={index} className="border-t hover:bg-gray-50 transition-all">
-                  <td className="py-2">{index + 1}</td>
-                  <td className="py-2">
-                    <img src={food.img} alt={food.name} className="w-12 h-12 object-cover" />
-                    {console.log('Image URL:', food.image)}
-                  </td>
-                  <td className="py-2">{food.name}</td>
-                  <td className="py-2">{food.qty}</td>
-                  <td className="py-2">{food.size}</td>
-                  <td className="py-2">{food.price}</td>
-                  <td className="py-2">
-                    <button
-                      type="button"
-                      className="text-red-500 hover:text-red-700 transition-all focus:outline-none"
-                      onClick={() => { dispatch({ type: "REMOVE", index: index }) }}
-                    >
-                      <DeleteIcon />
-                    </button>
-                  </td>
-                </tr>
-              ))}
+            {cartItems}
             </tbody>
           </table>
         </div>
         <div className="mt-6 flex justify-between items-center">
           <h1 className="text-xl font-semibold text-gray-800">Total Price: {totalPrice}/-</h1>
-          <button
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full focus:outline-none"
-            onClick={handleCheckOut}
-          >
-            Check Out
-          </button>
+          <Link to="/payment">
+   <button
+      className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full focus:outline-none"
+      onClick={handleCheckOut}
+   >
+      Check Out
+   </button>
+</Link>
+
         </div>
       </div>
       <Footer1 />

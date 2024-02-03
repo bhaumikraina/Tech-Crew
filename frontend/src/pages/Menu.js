@@ -88,9 +88,11 @@ export default function Menu() {
   };
 
   const filterType1 = (type) => {
-    const filteredItems = response[0].filter((item) => item.type === type);
+    const filteredByCategory = response[0].filter((item) => item.category === foodItem[0]?.category);
+    const filteredItems = filteredByCategory.filter((item) => item.type === type);
     setFoodItem(filteredItems);
   };
+  
 
 
 
