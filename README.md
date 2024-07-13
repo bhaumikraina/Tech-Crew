@@ -117,7 +117,7 @@
 
 1. Clone the repository
 
-https://github.com/stealth-bombeer/Hostel-Management-Portal.git
+https://github.com/bhaumikraina/Tech-Crew/tree/bhaumik?tab=readme-ov-file
 
 To start the frontend user interface
 
